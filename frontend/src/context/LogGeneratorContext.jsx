@@ -2,7 +2,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const LogGeneratorContext = createContext();
 
-const API_BASE = 'http://localhost:5000/api/logs';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api/logs'
+  : 'https://genr8-logs.onrender.com/api/logs';
 
 const DEFAULT_SETTINGS = {
   logTypes: ['linux-syslog'],

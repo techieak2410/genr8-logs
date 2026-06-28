@@ -7,7 +7,11 @@ export default function Header() {
   useEffect(() => {
     const checkHealth = async () => {
       try {
-        const res = await fetch('http://localhost:5000/health');
+        const apiHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+          ? 'http://localhost:5000'
+          : 'https://genr8-logs.onrender.com';
+          
+        const res = await fetch(`${apiHost}/health`);
         if (res.ok) {
           setBackendStatus('online');
         } else {
